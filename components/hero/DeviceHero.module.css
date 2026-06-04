@@ -1,0 +1,551 @@
+/* ════════════════════════════════════════════════════════════════
+   HERO SECTION — full-viewport two-column grid
+════════════════════════════════════════════════════════════════ */
+.hero {
+  position: relative;
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 48fr 52fr;
+  align-items: center;
+  overflow: hidden;
+  background: #080808;
+  color: #FFFFFF;
+  font-family: var(--font-inter), system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ── Ambient background layers ── */
+.heroAmbient {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.heroAmbient::before {
+  content: '';
+  position: absolute;
+  right: -10%;
+  top: 10%;
+  width: 70%;
+  height: 80%;
+  background: radial-gradient(
+    ellipse at center,
+    rgba(255,255,255,0.038) 0%,
+    rgba(255,255,255,0.012) 40%,
+    transparent 70%
+  );
+  border-radius: 50%;
+}
+
+/* Editorial thin vertical rule at the column divide */
+.heroDivider {
+  position: absolute;
+  left: 48%;
+  top: 18%;
+  bottom: 18%;
+  width: 1px;
+  background: linear-gradient(
+    to bottom,
+    transparent 0%,
+    rgba(255,255,255,0.10) 25%,
+    rgba(255,255,255,0.10) 75%,
+    transparent 100%
+  );
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Subtle scan-line grid texture */
+.heroGridTexture {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.012) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.012) 1px, transparent 1px);
+  background-size: 60px 60px;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.5;
+  -webkit-mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 0%, transparent 100%);
+  mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 0%, transparent 100%);
+}
+
+
+/* ─────────────────────────────────────────────────────────────
+   LEFT COLUMN — Typography & CTAs
+───────────────────────────────────────────────────────────── */
+.heroCopy {
+  position: relative;
+  z-index: 10;
+  padding: 100px 64px 80px 56px;
+}
+
+.eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  font-size: 9.5px;
+  font-weight: 600;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  color: #5A5A5A;
+  margin-bottom: 32px;
+}
+
+.eyebrowRule {
+  display: block;
+  width: 36px;
+  height: 1px;
+  background: linear-gradient(to right, transparent, #5A5A5A);
+  flex-shrink: 0;
+}
+
+/* Main headline */
+.headline {
+  font-family: var(--font-playfair), Georgia, serif;
+  font-weight: 900;
+  font-size: clamp(52px, 5.8vw, 90px);
+  line-height: 0.96;
+  letter-spacing: -0.025em;
+  color: #FFFFFF;
+  margin-bottom: 30px;
+}
+
+.headline em {
+  font-style: italic;
+  background: linear-gradient(135deg, #FFFFFF 0%, #C0C0C0 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.subheading {
+  font-size: 14.5px;
+  font-weight: 300;
+  line-height: 1.75;
+  color: #888888;
+  max-width: 360px;
+  margin-bottom: 52px;
+}
+
+/* ── CTA buttons ── */
+.ctaRow {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+  margin-bottom: 52px;
+}
+
+/* Primary — filled white */
+.btnPrimary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 15px 36px;
+  background: #FFFFFF;
+  color: #080808;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  border: 1px solid #FFFFFF;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background 0.25s, color 0.25s;
+  white-space: nowrap;
+}
+
+.btnPrimary:hover {
+  background: transparent;
+  color: #FFFFFF;
+}
+
+/* Secondary — ghost */
+.btnSecondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: #888888;
+  background: none;
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+  transition: color 0.2s;
+  white-space: nowrap;
+}
+
+.btnSecondary:hover { color: #FFFFFF; }
+
+.arrowIcon { transition: transform 0.2s cubic-bezier(0.22, 1, 0.36, 1); }
+.btnSecondary:hover .arrowIcon { transform: translateX(5px); }
+
+/* ── Google Reviews badge ── */
+.reviewsStrip {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding-top: 36px;
+  border-top: 1px solid rgba(255,255,255,0.08);
+}
+
+.googleG {
+  width: 22px;
+  height: 22px;
+  flex-shrink: 0;
+}
+
+.stars {
+  display: flex;
+  gap: 2px;
+  flex-shrink: 0;
+}
+
+.starIcon {
+  font-size: 13px;
+  color: #F9AB00;
+  line-height: 1;
+}
+
+.reviewsMeta {
+  font-size: 11px;
+  line-height: 1.5;
+  color: #888888;
+}
+
+.reviewsMeta strong {
+  color: #FFFFFF;
+  font-weight: 600;
+}
+
+
+/* ─────────────────────────────────────────────────────────────
+   RIGHT COLUMN — Layered product imagery
+───────────────────────────────────────────────────────────── */
+.heroStage {
+  position: relative;
+  height: 100vh;
+  z-index: 10;
+}
+
+.device {
+  position: absolute;
+  border-radius: 28px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/*
+  BLACK DEVICE — foreground, dominant, slightly left-tilted
+  Swap instruction: replace <figure class={styles.devicePlaceholderBlack}>
+  with: <img src="black-device.png" alt="Lunara Black Edition"
+              style={{width:'100%',height:'100%',objectFit:'contain'}} />
+*/
+.deviceBlack {
+  width: 260px;
+  height: 420px;
+  right: 8%;
+  top: 50%;
+  transform: translateY(-55%) rotate(-6deg);
+  transform-origin: center bottom;
+  z-index: 3;
+  background: #0E0E0E;
+  box-shadow:
+    0 0 0 1px rgba(255,255,255,0.07),
+    0 30px 80px rgba(0,0,0,0.95),
+    0 60px 120px rgba(0,0,0,0.7),
+    inset 0 1px 0 rgba(255,255,255,0.06);
+  animation: floatA 7s ease-in-out infinite;
+}
+
+/*
+  WHITE DEVICE — background layer, counter-tilted
+  Swap instruction: replace <figure class={styles.devicePlaceholderWhite}>
+  with: <img src="white-device.png" alt="Lunara White Edition"
+              style={{width:'100%',height:'100%',objectFit:'contain'}} />
+*/
+.deviceWhite {
+  width: 210px;
+  height: 340px;
+  left: 12%;
+  top: 50%;
+  transform: translateY(-45%) rotate(8deg);
+  transform-origin: center bottom;
+  z-index: 2;
+  background: #EEECEB;
+  box-shadow:
+    0 0 0 1px rgba(0,0,0,0.08),
+    0 20px 60px rgba(0,0,0,0.85),
+    0 40px 80px rgba(0,0,0,0.5);
+  animation: floatB 7s ease-in-out infinite;
+  animation-delay: -3.5s;
+}
+
+/* SVG silhouette placeholders */
+.devicePlaceholderBlack {
+  width: 110px;
+  height: 370px;
+}
+
+.devicePlaceholderWhite {
+  width: 90px;
+  height: 300px;
+}
+
+/* Edition label printed inside the card */
+.editionLabel {
+  position: absolute;
+  bottom: 22px;
+  left: 0;
+  right: 0;
+  text-align: center;
+  font-size: 8.5px;
+  font-weight: 600;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  opacity: 0.35;
+}
+
+.deviceBlack .editionLabel { color: #FFFFFF; }
+.deviceWhite .editionLabel { color: #080808; }
+
+/* ── Ambient glow plates behind each device ── */
+.glow {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.glowBlack {
+  width: 240px;
+  height: 340px;
+  right: 12%;
+  top: 22%;
+  background: radial-gradient(
+    ellipse at center,
+    rgba(255,255,255,0.05) 0%,
+    transparent 65%
+  );
+  animation: glowPulse 5s ease-in-out infinite;
+}
+
+.glowWhite {
+  width: 180px;
+  height: 260px;
+  left: 14%;
+  top: 30%;
+  background: radial-gradient(
+    ellipse at center,
+    rgba(255,255,255,0.04) 0%,
+    transparent 65%
+  );
+  animation: glowPulse 5s ease-in-out infinite;
+  animation-delay: -2.5s;
+}
+
+/* Floor reflection strip */
+.stageFloor {
+  position: absolute;
+  bottom: 8%;
+  left: 5%;
+  right: 5%;
+  height: 1px;
+  background: linear-gradient(
+    to right,
+    transparent 0%,
+    rgba(255,255,255,0.07) 30%,
+    rgba(255,255,255,0.07) 70%,
+    transparent 100%
+  );
+  z-index: 1;
+}
+
+/* ── Floating info badges (glassmorphism) ── */
+.badge {
+  position: absolute;
+  z-index: 5;
+  padding: 12px 18px;
+  background: rgba(255,255,255,0.04);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255,255,255,0.10);
+  border-radius: 14px;
+  white-space: nowrap;
+}
+
+.badgeLabel {
+  display: block;
+  font-size: 8.5px;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #5A5A5A;
+  margin-bottom: 4px;
+}
+
+.badgeValue {
+  font-size: 12px;
+  font-weight: 500;
+  color: #C0C0C0;
+  letter-spacing: 0.06em;
+}
+
+.badgeTech {
+  top: 20%;
+  right: 3%;
+  animation: badgeFloat 4s ease-in-out infinite;
+}
+
+.badgeCert {
+  bottom: 22%;
+  left: 3%;
+  animation: badgeFloat 4s ease-in-out infinite;
+  animation-delay: -2s;
+}
+
+
+/* ────────────────────────────────────────────────────────────
+   BOTTOM BAR — "Learn How It Works"
+──────────────────────────────────────────────────────────── */
+.heroBottom {
+  position: absolute;
+  bottom: 36px;
+  left: 0;
+  right: 0;
+  z-index: 20;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.learnTrigger {
+  display: inline-flex;
+  align-items: center;
+  gap: 16px;
+  font-size: 9.5px;
+  font-weight: 600;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: #5A5A5A;
+  background: none;
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.learnTrigger:hover { color: #FFFFFF; }
+
+.playRing {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 1px solid rgba(255,255,255,0.18);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: border-color 0.2s, background 0.2s;
+}
+
+.learnTrigger:hover .playRing {
+  border-color: rgba(255,255,255,0.5);
+  background: rgba(255,255,255,0.05);
+}
+
+.playRing svg { margin-left: 2px; }
+
+
+/* ════════════════════════════════════════════════════════════════
+   ANIMATIONS
+════════════════════════════════════════════════════════════════ */
+
+@keyframes floatA {
+  0%, 100% { transform: translateY(-55%) rotate(-6deg); }
+  50%       { transform: translateY(-59%) rotate(-6deg) translateX(-4px); }
+}
+
+@keyframes floatB {
+  0%, 100% { transform: translateY(-45%) rotate(8deg); }
+  50%       { transform: translateY(-49%) rotate(8deg) translateX(4px); }
+}
+
+@keyframes badgeFloat {
+  0%, 100% { transform: translateY(0px); }
+  50%       { transform: translateY(-8px); }
+}
+
+@keyframes glowPulse {
+  0%, 100% { opacity: 0.6; }
+  50%       { opacity: 1; }
+}
+
+
+/* ════════════════════════════════════════════════════════════════
+   RESPONSIVE
+════════════════════════════════════════════════════════════════ */
+
+@media (max-width: 1100px) {
+  .heroCopy { padding: 100px 40px 60px 32px; }
+  .deviceBlack { width: 220px; height: 355px; }
+  .deviceWhite { width: 175px; height: 285px; }
+}
+
+@media (max-width: 768px) {
+  .hero {
+    grid-template-columns: 1fr;
+    min-height: auto;
+  }
+
+  .heroDivider { display: none; }
+  .heroGridTexture { opacity: 0.25; }
+  .eyebrowRule { display: none; }
+
+  .heroStage {
+    order: 1;
+    height: 52vmax;
+    min-height: 340px;
+    max-height: 460px;
+  }
+
+  .heroCopy {
+    order: 2;
+    padding: 36px 24px 48px;
+  }
+
+  .subheading { max-width: 100%; }
+
+  .ctaRow { flex-direction: column; align-items: flex-start; }
+
+  .btnPrimary { width: 100%; justify-content: center; }
+
+  .deviceBlack {
+    width: 160px;
+    height: 258px;
+    right: 12%;
+  }
+
+  .deviceWhite {
+    width: 130px;
+    height: 210px;
+    left: 12%;
+  }
+
+  .badgeTech,
+  .badgeCert { display: none; }
+
+  .heroBottom {
+    position: static;
+    padding: 24px 0 36px;
+    justify-content: center;
+  }
+}

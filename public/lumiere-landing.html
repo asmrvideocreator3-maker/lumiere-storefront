@@ -1,0 +1,1762 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lumière Innovations — Radiate Confidence. Define Beauty.</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Inter:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet"
+  />
+
+  <style>
+    /* ═══════════════════════════════════════════════════════════
+       TOKENS & RESET
+    ═══════════════════════════════════════════════════════════ */
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --black:       #000000;
+      --near-black:  #0A0A0A;
+      --white:       #FFFFFF;
+      --off-white:   #F6F4F2;
+      --gray-100:    #EEECEB;
+      --gray-300:    #D0CCCB;
+      --gray-500:    #888888;
+      --gray-700:    #444444;
+
+      --font-serif:  'Playfair Display', Georgia, serif;
+      --font-sans:   'Inter', system-ui, sans-serif;
+      --ease-out:    cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font-sans);
+      background: var(--white);
+      color: var(--near-black);
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    a  { text-decoration: none; color: inherit; }
+    img { display: block; max-width: 100%; height: auto; }
+    button { font-family: inherit; }
+
+
+    /* ═══════════════════════════════════════════════════════════
+       ❶ GLOBAL HEADER
+    ═══════════════════════════════════════════════════════════ */
+
+    /* Top utility bar */
+    .util-bar {
+      background: var(--black);
+      color: var(--white);
+      text-align: center;
+      padding: 11px 20px;
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      position: relative;
+      z-index: 200;
+    }
+
+    /* Sticky nav */
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 190;
+      background: rgba(255,255,255,0.97);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--gray-300);
+      height: 72px;
+    }
+
+    .nav-inner {
+      max-width: 1280px;
+      margin: 0 auto;
+      height: 100%;
+      padding: 0 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: relative;
+    }
+
+    .nav-logo {
+      font-family: var(--font-serif);
+      font-size: 14.5px;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--black);
+    }
+
+    .nav-links {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      align-items: center;
+      gap: 40px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: 10.5px;
+      font-weight: 500;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--gray-500);
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--black); }
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .nav-icon-btn {
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: var(--near-black);
+      border-radius: 50%;
+      transition: background 0.15s;
+    }
+
+    .nav-icon-btn:hover { background: var(--gray-100); }
+
+    .nav-hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 6px;
+      margin-left: 4px;
+    }
+
+    .nav-hamburger span {
+      display: block;
+      width: 22px;
+      height: 1px;
+      background: var(--black);
+    }
+
+
+    /* ═══════════════════════════════════════════════════════════
+       ❷ HERO — SPLIT PANEL (white left / black right)
+    ═══════════════════════════════════════════════════════════ */
+
+    .hero {
+      position: relative;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      min-height: 100vh;
+      overflow: hidden;
+    }
+
+    /* Left panel — white */
+    .hero-left {
+      background: var(--white);
+    }
+
+    /* Text lives in this inner wrapper at z-index 20,
+       so it renders above the device stage (z-index 10)
+       while still being inside the white panel */
+    .hero-left-content {
+      position: relative;
+      z-index: 20;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 96px 72px 80px 64px;
+    }
+
+    /* Right panel — black */
+    .hero-right {
+      background: var(--black);
+      position: relative;
+    }
+
+    /* Radial bloom on black panel */
+    .hero-right-glow {
+      position: absolute;
+      right: 15%;
+      top: 20%;
+      width: 380px;
+      height: 380px;
+      background: radial-gradient(ellipse, rgba(255,255,255,0.045) 0%, transparent 68%);
+      pointer-events: none;
+    }
+
+    /* ── Device stage — spans the FULL hero via position:absolute ──
+       z-index 10 = above both static panel backgrounds,
+       below hero-left-content (z-index 20) */
+    .hero-stage {
+      position: absolute;
+      inset: 0;
+      z-index: 10;
+      pointer-events: none;
+    }
+
+    /* ──────────────────────────────────
+       BLACK device — foreground, crosses the divide
+       SWAP: replace the <div class="device-ph ..."> element with:
+       <img src="image_3dfdad.png" alt="Lumière Black Edition"
+            class="device-img dev-black" />
+    ────────────────────────────────── */
+    .dev-black {
+      position: absolute;
+      width: 250px;
+      height: 410px;
+      left: 50%;
+      top: 50%;
+      transform: translate(-38%, -53%) rotate(-5.5deg);
+      transform-origin: center bottom;
+      z-index: 4;
+      border-radius: 26px;
+      background: #111111;
+      box-shadow:
+        0 0 0 1px rgba(255,255,255,0.07),
+        0 28px 72px rgba(0,0,0,0.95),
+        0 56px 110px rgba(0,0,0,0.65),
+        inset 0 1px 0 rgba(255,255,255,0.06);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      animation: floatBlack 7s ease-in-out infinite;
+    }
+
+    /* ──────────────────────────────────
+       WHITE device — background layer
+       SWAP: replace the <div class="device-ph ..."> element with:
+       <img src="image_3dfda7.png" alt="Lumière White Edition"
+            class="device-img dev-white" />
+    ────────────────────────────────── */
+    .dev-white {
+      position: absolute;
+      width: 200px;
+      height: 330px;
+      left: 50%;
+      top: 50%;
+      transform: translate(22%, -45%) rotate(7deg);
+      transform-origin: center bottom;
+      z-index: 3;
+      border-radius: 22px;
+      background: #EDEBE9;
+      box-shadow:
+        0 0 0 1px rgba(0,0,0,0.07),
+        0 20px 56px rgba(0,0,0,0.88),
+        0 42px 80px rgba(0,0,0,0.55);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      animation: floatWhite 7s ease-in-out infinite;
+      animation-delay: -3.5s;
+    }
+
+    /* Edition label */
+    .dev-edition {
+      position: absolute;
+      bottom: 18px;
+      left: 0; right: 0;
+      text-align: center;
+      font-size: 8px;
+      font-weight: 600;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      opacity: 0.38;
+    }
+
+    .dev-black .dev-edition { color: var(--white); }
+    .dev-white .dev-edition { color: var(--black); }
+
+    /* ── Copy elements ── */
+    .hero-eyebrow {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 9.5px;
+      font-weight: 600;
+      letter-spacing: 0.34em;
+      text-transform: uppercase;
+      color: var(--gray-500);
+      margin-bottom: 30px;
+    }
+
+    .hero-eyebrow::before {
+      content: '';
+      width: 28px;
+      height: 1px;
+      background: var(--gray-300);
+      flex-shrink: 0;
+    }
+
+    .hero-headline {
+      font-family: var(--font-serif);
+      font-size: clamp(44px, 5vw, 80px);
+      font-weight: 900;
+      line-height: 0.98;
+      letter-spacing: -0.015em;
+      color: var(--black);
+      margin-bottom: 30px;
+    }
+
+    .hero-headline .italic {
+      font-style: italic;
+      display: block;
+    }
+
+    /* Google Reviews strip */
+    .reviews-strip {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 44px;
+    }
+
+    .google-g { width: 20px; height: 20px; flex-shrink: 0; }
+
+    .stars { display: flex; gap: 2px; }
+    .star  { font-size: 13px; color: #F9AB00; line-height: 1; }
+
+    .reviews-copy {
+      font-size: 11.5px;
+      color: var(--gray-500);
+      line-height: 1.5;
+    }
+
+    .reviews-copy strong { color: var(--near-black); font-weight: 600; }
+
+    /* CTA row */
+    .cta-row {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    /* Pill — solid */
+    .btn-solid {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 15px 38px;
+      background: var(--black);
+      color: var(--white);
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+      border: 1px solid var(--black);
+      border-radius: 100px;
+      cursor: pointer;
+      transition: background 0.22s, color 0.22s;
+      white-space: nowrap;
+    }
+
+    .btn-solid:hover { background: transparent; color: var(--black); }
+
+    /* Pill — outline */
+    .btn-outline {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 15px 30px;
+      background: transparent;
+      color: var(--near-black);
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      border: 1px solid rgba(0,0,0,0.25);
+      border-radius: 100px;
+      cursor: pointer;
+      transition: background 0.22s, color 0.22s, border-color 0.22s;
+      white-space: nowrap;
+    }
+
+    .btn-outline:hover {
+      background: var(--black);
+      color: var(--white);
+      border-color: var(--black);
+    }
+
+    .btn-arrow { transition: transform 0.2s var(--ease-out); }
+    .btn-outline:hover .btn-arrow { transform: translateX(4px); }
+
+
+    /* ═══════════════════════════════════════════════════════════
+       ❸ THE SCULPTING RITUAL — 3-step grid
+    ═══════════════════════════════════════════════════════════ */
+
+    .ritual {
+      background: var(--white);
+      padding: 108px 40px;
+      border-top: 1px solid var(--gray-100);
+    }
+
+    .section-eyebrow {
+      font-size: 9px;
+      font-weight: 600;
+      letter-spacing: 0.36em;
+      text-transform: uppercase;
+      color: var(--gray-500);
+      margin-bottom: 18px;
+    }
+
+    .section-title {
+      font-family: var(--font-serif);
+      font-size: clamp(30px, 3.4vw, 52px);
+      font-weight: 700;
+      line-height: 1.1;
+      color: var(--black);
+    }
+
+    .section-header {
+      text-align: center;
+      max-width: 560px;
+      margin: 0 auto 80px;
+    }
+
+    .ritual-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      max-width: 1080px;
+      margin: 0 auto;
+      border: 1px solid var(--gray-300);
+    }
+
+    .ritual-step {
+      padding: 56px 44px 52px;
+      position: relative;
+    }
+
+    .ritual-step + .ritual-step {
+      border-left: 1px solid var(--gray-300);
+    }
+
+    .step-num {
+      font-family: var(--font-serif);
+      font-size: 11px;
+      font-weight: 400;
+      letter-spacing: 0.14em;
+      color: var(--gray-500);
+      margin-bottom: 36px;
+    }
+
+    .step-icon {
+      width: 48px;
+      height: 48px;
+      border: 1px solid var(--gray-300);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 28px;
+    }
+
+    .step-label {
+      font-size: 8.5px;
+      font-weight: 700;
+      letter-spacing: 0.32em;
+      text-transform: uppercase;
+      color: var(--black);
+      margin-bottom: 14px;
+    }
+
+    .step-body {
+      font-size: 14px;
+      font-weight: 300;
+      line-height: 1.82;
+      color: var(--gray-700);
+    }
+
+
+    /* ═══════════════════════════════════════════════════════════
+       ❹ DEEP-DIVE TECHNOLOGY
+    ═══════════════════════════════════════════════════════════ */
+
+    .tech {
+      background: var(--off-white);
+      padding: 108px 40px;
+    }
+
+    .tech-inner {
+      max-width: 1080px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 88px;
+      align-items: center;
+    }
+
+    /* Left: focal image */
+    .tech-frame {
+      width: 100%;
+      aspect-ratio: 4 / 5;
+      background: #1A1A1A;
+      border-radius: 3px;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+
+    .tech-frame img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    /* Placeholder for roller close-up image */
+    .tech-frame-ph {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 20px;
+      width: 100%;
+      height: 100%;
+    }
+
+    .spheres-row {
+      display: flex;
+      align-items: flex-end;
+      gap: 14px;
+    }
+
+    .sphere {
+      border-radius: 50%;
+      background: radial-gradient(circle at 32% 32%, #AAAAAA, #222222);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.5), inset 0 -2px 8px rgba(0,0,0,0.35);
+    }
+
+    .sphere-lg { width: 80px; height: 80px; }
+    .sphere-sm { width: 60px; height: 60px; margin-bottom: 6px; }
+
+    .tech-frame-caption {
+      font-size: 8.5px;
+      letter-spacing: 0.26em;
+      text-transform: uppercase;
+      color: var(--gray-500);
+      margin-top: 4px;
+    }
+
+    /* Right: spec copy */
+    .tech-copy .section-eyebrow { margin-bottom: 16px; }
+    .tech-copy .section-title   { margin-bottom: 56px; }
+
+    .tech-spec {
+      padding: 30px 0;
+      border-top: 1px solid rgba(0,0,0,0.10);
+    }
+
+    .tech-spec:last-of-type { border-bottom: 1px solid rgba(0,0,0,0.10); }
+
+    .tech-spec-title {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.03em;
+      color: var(--black);
+      margin-bottom: 10px;
+    }
+
+    .tech-spec-title::before {
+      content: '';
+      display: block;
+      width: 18px;
+      height: 1px;
+      background: var(--black);
+      flex-shrink: 0;
+    }
+
+    .tech-spec-body {
+      font-size: 13.5px;
+      font-weight: 300;
+      line-height: 1.78;
+      color: var(--gray-700);
+      padding-left: 32px;
+    }
+
+
+    /* ═══════════════════════════════════════════════════════════
+       ❺ SOCIAL PROOF & RESULTS
+    ═══════════════════════════════════════════════════════════ */
+
+    .proof {
+      background: var(--white);
+      padding: 108px 40px;
+    }
+
+    .proof-header {
+      text-align: center;
+      max-width: 560px;
+      margin: 0 auto 72px;
+    }
+
+    /* Before / After */
+    .ba-grid {
+      max-width: 860px;
+      margin: 0 auto 80px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3px;
+      background: var(--gray-300);
+      border: 1px solid var(--gray-300);
+    }
+
+    .ba-panel {
+      aspect-ratio: 3 / 4;
+      background: var(--gray-100);
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .ba-panel img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    /* placeholder icon */
+    .ba-ph {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      background: var(--gray-300);
+    }
+
+    .ba-tag {
+      position: absolute;
+      font-size: 8.5px;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      padding: 7px 14px;
+    }
+
+    .ba-before .ba-tag { top: 18px; left: 18px; background: var(--black); color: var(--white); }
+    .ba-after  .ba-tag { top: 18px; left: 18px; background: var(--white); color: var(--black); border: 1px solid var(--gray-300); }
+
+    .ba-week {
+      position: absolute;
+      bottom: 18px;
+      right: 18px;
+      font-size: 9px;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      padding: 6px 13px;
+      background: var(--white);
+      border: 1px solid var(--gray-300);
+      color: var(--black);
+    }
+
+    /* Reviews scroll */
+    .reviews-subhead {
+      font-family: var(--font-serif);
+      font-size: clamp(22px, 2.6vw, 34px);
+      font-weight: 700;
+      text-align: center;
+      color: var(--black);
+      margin-bottom: 48px;
+    }
+
+    .reviews-track {
+      display: flex;
+      gap: 24px;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+      padding: 0 40px 24px;
+      max-width: 1100px;
+      margin: 0 auto;
+      scrollbar-width: none;
+    }
+
+    .reviews-track::-webkit-scrollbar { display: none; }
+
+    .review-card {
+      flex: 0 0 320px;
+      scroll-snap-align: start;
+      background: var(--off-white);
+      padding: 36px 30px;
+      border-radius: 2px;
+    }
+
+    .review-stars {
+      display: flex;
+      gap: 3px;
+      margin-bottom: 20px;
+    }
+
+    .review-star { font-size: 13px; color: #F9AB00; }
+
+    .review-quote {
+      font-family: var(--font-serif);
+      font-style: italic;
+      font-size: 14.5px;
+      font-weight: 400;
+      line-height: 1.78;
+      color: var(--gray-700);
+      margin-bottom: 28px;
+    }
+
+    .review-author {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .review-avatar {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: var(--gray-700);
+      color: var(--white);
+      font-size: 13px;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .review-name {
+      font-size: 11.5px;
+      font-weight: 600;
+      color: var(--black);
+    }
+
+    .review-location {
+      font-size: 10.5px;
+      color: var(--gray-500);
+      margin-top: 2px;
+    }
+
+    .review-badge {
+      margin-top: 4px;
+      font-size: 9px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #2E7D32;
+    }
+
+
+    /* ═══════════════════════════════════════════════════════════
+       ❻ CONVERSION FOOTER
+    ═══════════════════════════════════════════════════════════ */
+
+    /* Final pitch block */
+    .conversion {
+      background: var(--black);
+      padding: 120px 40px 100px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Ambient glow */
+    .conversion::before {
+      content: '';
+      position: absolute;
+      top: -20%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 800px;
+      height: 500px;
+      background: radial-gradient(ellipse, rgba(255,255,255,0.035) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    /* Device duo display */
+    .conv-devices {
+      position: relative;
+      height: 260px;
+      max-width: 400px;
+      margin: 0 auto 72px;
+    }
+
+    .conv-dev {
+      position: absolute;
+      border-radius: 20px;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .conv-dev-b {
+      width: 150px;
+      height: 245px;
+      left: 50%;
+      top: 0;
+      transform: translateX(-70%) rotate(-5deg);
+      background: #141414;
+      box-shadow: 0 0 0 1px rgba(255,255,255,0.07), 0 20px 56px rgba(0,0,0,0.9), inset 0 1px 0 rgba(255,255,255,0.05);
+      z-index: 2;
+    }
+
+    .conv-dev-w {
+      width: 122px;
+      height: 200px;
+      left: 50%;
+      top: 30px;
+      transform: translateX(10%) rotate(7deg);
+      background: #EDEBE9;
+      box-shadow: 0 0 0 1px rgba(0,0,0,0.06), 0 16px 44px rgba(0,0,0,0.75);
+      z-index: 1;
+    }
+
+    .conversion-headline {
+      font-family: var(--font-serif);
+      font-size: clamp(42px, 5.5vw, 80px);
+      font-weight: 900;
+      color: var(--white);
+      line-height: 1.04;
+      letter-spacing: -0.01em;
+      margin-bottom: 20px;
+      position: relative;
+    }
+
+    .conversion-headline em { font-style: italic; }
+
+    .conversion-sub {
+      font-size: 13px;
+      font-weight: 300;
+      letter-spacing: 0.1em;
+      color: var(--gray-500);
+      margin-bottom: 52px;
+      position: relative;
+    }
+
+    .btn-conversion {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 20px 52px;
+      background: var(--white);
+      color: var(--black);
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      border: 1px solid var(--white);
+      border-radius: 100px;
+      cursor: pointer;
+      transition: background 0.22s, color 0.22s;
+      position: relative;
+    }
+
+    .btn-conversion:hover { background: transparent; color: var(--white); }
+
+    /* Footer columns */
+    .footer-cols {
+      background: #090909;
+      border-top: 1px solid rgba(255,255,255,0.07);
+      padding: 80px 40px 56px;
+    }
+
+    .footer-cols-inner {
+      max-width: 1080px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1.35fr 1fr 1fr;
+      gap: 72px;
+    }
+
+    /* Col 1: Newsletter */
+    .footer-newsletter-title {
+      font-family: var(--font-serif);
+      font-size: 18px;
+      font-weight: 700;
+      font-style: italic;
+      color: var(--white);
+      line-height: 1.4;
+      margin-bottom: 14px;
+    }
+
+    .footer-newsletter-body {
+      font-size: 12.5px;
+      font-weight: 300;
+      line-height: 1.72;
+      color: var(--gray-500);
+      margin-bottom: 28px;
+    }
+
+    .email-form {
+      display: flex;
+      border: 1px solid rgba(255,255,255,0.14);
+    }
+
+    .email-input {
+      flex: 1;
+      background: transparent;
+      border: none;
+      padding: 14px 18px;
+      font-family: var(--font-sans);
+      font-size: 12px;
+      color: var(--white);
+      outline: none;
+      min-width: 0;
+    }
+
+    .email-input::placeholder { color: #555; }
+
+    .email-btn {
+      flex-shrink: 0;
+      background: var(--white);
+      color: var(--black);
+      border: none;
+      padding: 14px 20px;
+      font-family: var(--font-sans);
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    .email-btn:hover { background: var(--gray-300); }
+
+    /* Col 2 & 3 headings */
+    .footer-col-head {
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--white);
+      margin-bottom: 24px;
+    }
+
+    .footer-links {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .footer-links a {
+      font-size: 13px;
+      font-weight: 300;
+      color: var(--gray-500);
+      transition: color 0.18s;
+    }
+
+    .footer-links a:hover { color: var(--white); }
+
+    /* Col 3: brand + social */
+    .footer-brand-mark {
+      font-family: var(--font-serif);
+      font-size: 15px;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--white);
+      margin-bottom: 14px;
+    }
+
+    .footer-brand-tagline {
+      font-size: 12px;
+      font-weight: 300;
+      line-height: 1.72;
+      color: var(--gray-500);
+      margin-bottom: 30px;
+    }
+
+    .footer-socials {
+      display: flex;
+      gap: 12px;
+    }
+
+    .social-btn {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      border: 1px solid rgba(255,255,255,0.12);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--gray-500);
+      transition: border-color 0.18s, color 0.18s;
+    }
+
+    .social-btn:hover { border-color: rgba(255,255,255,0.45); color: var(--white); }
+
+    /* Foot strip */
+    .footer-strip {
+      background: #090909;
+      border-top: 1px solid rgba(255,255,255,0.05);
+      padding: 18px 40px;
+    }
+
+    .footer-strip-inner {
+      max-width: 1080px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .footer-copy { font-size: 11px; color: #555; }
+
+    .footer-legal {
+      display: flex;
+      gap: 24px;
+    }
+
+    .footer-legal a {
+      font-size: 11px;
+      color: #555;
+      transition: color 0.18s;
+    }
+
+    .footer-legal a:hover { color: var(--white); }
+
+
+    /* ═══════════════════════════════════════════════════════════
+       ANIMATIONS
+    ═══════════════════════════════════════════════════════════ */
+
+    @keyframes floatBlack {
+      0%, 100% { transform: translate(-38%, -53%) rotate(-5.5deg); }
+      50%       { transform: translate(-38%, -57%) rotate(-5.5deg) translateX(-4px); }
+    }
+
+    @keyframes floatWhite {
+      0%, 100% { transform: translate(22%, -45%) rotate(7deg); }
+      50%       { transform: translate(22%, -49%) rotate(7deg) translateX(4px); }
+    }
+
+
+    /* ═══════════════════════════════════════════════════════════
+       RESPONSIVE
+    ═══════════════════════════════════════════════════════════ */
+
+    @media (max-width: 1100px) {
+      .nav-links { display: none; }
+      .nav-hamburger { display: flex; }
+
+      .hero-left-content { padding: 80px 48px 60px; }
+
+      .dev-black { width: 210px; height: 345px; }
+      .dev-white { width: 168px; height: 275px; }
+
+      .tech-inner { grid-template-columns: 1fr; gap: 52px; }
+      .tech-frame { aspect-ratio: 16 / 9; max-height: 300px; }
+
+      .footer-cols-inner { grid-template-columns: 1fr 1fr; gap: 48px; }
+    }
+
+    @media (max-width: 768px) {
+      /* Hero: stack vertically */
+      .hero {
+        grid-template-columns: 1fr;
+        min-height: auto;
+      }
+
+      .hero-right {
+        order: 1;
+        height: 58vmax;
+        min-height: 320px;
+        max-height: 460px;
+        position: relative; /* keep as containing block for stage */
+      }
+
+      .hero-left { order: 2; }
+
+      .hero-left-content {
+        padding: 52px 24px 56px;
+        height: auto;
+      }
+
+      /* On mobile, stage is inside hero-right, devices sized down */
+      .hero-stage {
+        position: absolute;
+        inset: 0;
+      }
+
+      .dev-black {
+        width: 155px; height: 255px;
+        left: 50%; top: 50%;
+        transform: translate(-60%, -52%) rotate(-5.5deg);
+        animation-name: floatBlackM;
+      }
+
+      .dev-white {
+        width: 125px; height: 205px;
+        left: 50%; top: 50%;
+        transform: translate(10%, -45%) rotate(7deg);
+        animation-name: floatWhiteM;
+      }
+
+      /* Ritual: single column */
+      .ritual-grid {
+        grid-template-columns: 1fr;
+        border: 1px solid var(--gray-300);
+      }
+
+      .ritual-step + .ritual-step {
+        border-left: none;
+        border-top: 1px solid var(--gray-300);
+      }
+
+      .ritual-step { padding: 40px 28px; }
+
+      /* Social proof */
+      .ba-grid { grid-template-columns: 1fr; }
+
+      /* Footer */
+      .footer-cols-inner { grid-template-columns: 1fr; gap: 40px; }
+
+      .footer-strip-inner { flex-direction: column; text-align: center; gap: 10px; }
+
+      .cta-row { flex-direction: column; align-items: stretch; }
+      .btn-solid, .btn-outline { text-align: center; justify-content: center; }
+
+      /* Conversion block */
+      .conv-devices { height: 200px; }
+      .conv-dev-b { width: 115px; height: 190px; }
+      .conv-dev-w { width: 94px; height: 155px; top: 22px; }
+    }
+
+    @keyframes floatBlackM {
+      0%, 100% { transform: translate(-60%, -52%) rotate(-5.5deg); }
+      50%       { transform: translate(-60%, -56%) rotate(-5.5deg); }
+    }
+
+    @keyframes floatWhiteM {
+      0%, 100% { transform: translate(10%, -45%) rotate(7deg); }
+      50%       { transform: translate(10%, -49%) rotate(7deg); }
+    }
+  </style>
+</head>
+<body>
+
+
+  <!-- ═══════════════════════════════════════════════════════════
+       ❶ GLOBAL HEADER
+  ═══════════════════════════════════════════════════════════ -->
+
+  <!-- Top utility bar -->
+  <div class="util-bar" role="banner" aria-label="Store promotions">
+    FREE EXPRESS SHIPPING ON ALL ORDERS&nbsp;&nbsp;|&nbsp;&nbsp;30-DAY RISK-FREE TRIAL
+  </div>
+
+  <!-- Main navigation -->
+  <nav class="nav" role="navigation" aria-label="Main navigation">
+    <div class="nav-inner">
+
+      <!-- Wordmark -->
+      <a href="/" class="nav-logo" aria-label="Lumière Innovations home">Lumière Innovations</a>
+
+      <!-- Centred desktop links -->
+      <ul class="nav-links" role="list">
+        <li><a href="#duo">Shop Duo</a></li>
+        <li><a href="#technology">The Technology</a></li>
+        <li><a href="#results">Results</a></li>
+        <li><a href="#story">Our Story</a></li>
+      </ul>
+
+      <!-- Right icons -->
+      <div class="nav-right">
+        <!-- Shopping bag -->
+        <button class="nav-icon-btn" type="button" aria-label="Shopping bag">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+               stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/>
+            <line x1="3" y1="6" x2="21" y2="6"/>
+            <path d="M16 10a4 4 0 01-8 0"/>
+          </svg>
+        </button>
+        <!-- User account -->
+        <button class="nav-icon-btn" type="button" aria-label="User account">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+               stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/>
+            <circle cx="12" cy="7" r="4"/>
+          </svg>
+        </button>
+        <!-- Mobile hamburger -->
+        <button class="nav-hamburger" type="button" aria-label="Open mobile menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+
+    </div>
+  </nav>
+
+
+  <!-- ═══════════════════════════════════════════════════════════
+       ❷ HERO — SPLIT PANEL
+  ═══════════════════════════════════════════════════════════ -->
+  <section class="hero" id="duo" aria-label="Lumière Innovations — hero">
+
+    <!-- White panel (left) -->
+    <div class="hero-left">
+      <div class="hero-left-content">
+
+        <p class="hero-eyebrow">Luxury Facial Technology</p>
+
+        <h1 class="hero-headline">
+          Radiate<br>
+          <span class="italic">Confidence.</span>
+          Define Beauty.
+        </h1>
+
+        <!-- Google Reviews badge -->
+        <div class="reviews-strip" role="region" aria-label="Google customer reviews">
+          <svg class="google-g" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
+            <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
+            <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/>
+            <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
+          </svg>
+          <div class="stars" aria-label="5 out of 5 stars">
+            <span class="star" aria-hidden="true">★</span>
+            <span class="star" aria-hidden="true">★</span>
+            <span class="star" aria-hidden="true">★</span>
+            <span class="star" aria-hidden="true">★</span>
+            <span class="star" aria-hidden="true">★</span>
+          </div>
+          <p class="reviews-copy">
+            <strong>4.9 / 5.0</strong> · <strong>2,140+</strong> verified reviews on Google
+          </p>
+        </div>
+
+        <!-- CTAs -->
+        <div class="cta-row">
+          <a href="#" class="btn-solid" aria-label="Shop the Black and White duo bundle">Shop The Duo</a>
+          <a href="#results" class="btn-outline" aria-label="See customer results gallery">
+            <svg class="btn-arrow" width="15" height="9" viewBox="0 0 16 10" fill="none" aria-hidden="true">
+              <path d="M1 5h14M11 1l4 4-4 4" stroke="currentColor" stroke-width="1.3"
+                    stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            Show Us Your Works
+          </a>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Black panel (right) -->
+    <div class="hero-right">
+      <div class="hero-right-glow" aria-hidden="true"></div>
+    </div>
+
+    <!-- ── Device stage — spans full hero width via position:absolute ── -->
+    <div class="hero-stage" aria-label="Product showcase — Black and White editions">
+
+      <!--
+        BLACK DEVICE — foreground layer, crosses the centre divide
+        ──────────────────────────────────────────────────────────
+        TO SWAP IN REAL IMAGE: remove the inner <div class="device-ph"> and add:
+        <img src="image_3dfdad.png" alt="Lumière Black Edition"
+             style="width:100%;height:100%;object-fit:contain" />
+      -->
+      <div class="dev-black" role="img" aria-label="Lumière Black Edition microcurrent roller">
+        <div aria-hidden="true" style="display:flex;align-items:center;justify-content:center;width:100%;height:100%;">
+          <svg viewBox="0 0 110 370" fill="none" width="92" height="308" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="bH" x1="0" y1="0" x2="1" y2="0">
+                <stop offset="0%"   stop-color="#2A2A2A"/>
+                <stop offset="45%"  stop-color="#181818"/>
+                <stop offset="100%" stop-color="#0A0A0A"/>
+              </linearGradient>
+              <linearGradient id="bHd" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0%"   stop-color="#333"/>
+                <stop offset="100%" stop-color="#0D0D0D"/>
+              </linearGradient>
+              <radialGradient id="bHl" cx="30%" cy="30%">
+                <stop offset="0%"   stop-color="rgba(255,255,255,0.13)"/>
+                <stop offset="100%" stop-color="rgba(255,255,255,0)"/>
+              </radialGradient>
+            </defs>
+            <ellipse cx="55" cy="45" rx="47" ry="43" fill="url(#bHd)"/>
+            <ellipse cx="55" cy="40" rx="35" ry="28" fill="url(#bHl)"/>
+            <ellipse cx="55" cy="45" rx="47" ry="43" fill="none" stroke="rgba(255,255,255,0.07)" stroke-width="1"/>
+            <rect x="45" y="85"  width="20" height="28" rx="4"  fill="#161616"/>
+            <rect x="36" y="110" width="38" height="240" rx="19" fill="url(#bH)"/>
+            <rect x="36" y="110" width="5"  height="240" rx="2.5" fill="rgba(255,255,255,0.06)"/>
+            <line x1="55" y1="125" x2="55" y2="335" stroke="rgba(255,255,255,0.025)" stroke-width="0.8"/>
+            <line x1="40" y1="220" x2="70" y2="220" stroke="rgba(255,255,255,0.12)" stroke-width="0.6"/>
+            <rect x="47" y="285" width="16" height="6"   rx="3"  fill="rgba(255,255,255,0.07)"/>
+          </svg>
+        </div>
+        <span class="dev-edition">Black Edition</span>
+      </div>
+
+      <!--
+        WHITE DEVICE — background layer
+        ──────────────────────────────────────────────────────────
+        TO SWAP IN REAL IMAGE: remove the inner <svg> and add:
+        <img src="image_3dfda7.png" alt="Lumière White Edition"
+             style="width:100%;height:100%;object-fit:contain" />
+      -->
+      <div class="dev-white" role="img" aria-label="Lumière White Edition microcurrent roller">
+        <div aria-hidden="true" style="display:flex;align-items:center;justify-content:center;width:100%;height:100%;">
+          <svg viewBox="0 0 90 300" fill="none" width="78" height="258" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="wH" x1="0" y1="0" x2="1" y2="0">
+                <stop offset="0%"   stop-color="#FAFAFA"/>
+                <stop offset="55%"  stop-color="#ECEBE9"/>
+                <stop offset="100%" stop-color="#D4D2D0"/>
+              </linearGradient>
+              <linearGradient id="wHd" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0%"   stop-color="#FFFFFF"/>
+                <stop offset="100%" stop-color="#DEDCDA"/>
+              </linearGradient>
+              <radialGradient id="wHl" cx="35%" cy="35%">
+                <stop offset="0%"   stop-color="rgba(255,255,255,0.8)"/>
+                <stop offset="100%" stop-color="rgba(255,255,255,0)"/>
+              </radialGradient>
+            </defs>
+            <ellipse cx="45" cy="38" rx="38" ry="35" fill="url(#wHd)"/>
+            <ellipse cx="45" cy="33" rx="28" ry="23" fill="url(#wHl)" opacity="0.5"/>
+            <rect x="37" y="70"  width="16" height="24" rx="3"  fill="#E2E0DE"/>
+            <rect x="30" y="91"  width="30" height="192" rx="15" fill="url(#wH)"/>
+            <rect x="30" y="91"  width="6"  height="192" rx="3"  fill="rgba(255,255,255,0.3)"/>
+            <line x1="33" y1="180" x2="57" y2="180" stroke="rgba(0,0,0,0.10)" stroke-width="0.6"/>
+            <rect x="38" y="235" width="14" height="5"   rx="2.5" fill="rgba(0,0,0,0.08)"/>
+          </svg>
+        </div>
+        <span class="dev-edition">White Edition</span>
+      </div>
+
+    </div><!-- /hero-stage -->
+
+  </section>
+
+
+  <!-- ═══════════════════════════════════════════════════════════
+       ❸ THE SCULPTING RITUAL
+  ═══════════════════════════════════════════════════════════ -->
+  <section class="ritual" id="ritual" aria-label="The Sculpting Ritual — 3-step guide">
+
+    <div class="section-header">
+      <p class="section-eyebrow">Your Daily Protocol</p>
+      <h2 class="section-title">The Sculpting Ritual</h2>
+    </div>
+
+    <div class="ritual-grid" role="list">
+
+      <!-- Step 01: Prep -->
+      <div class="ritual-step" role="listitem">
+        <p class="step-num">Step 01</p>
+        <div class="step-icon" aria-hidden="true">
+          <svg width="19" height="22" viewBox="0 0 20 24" fill="none">
+            <path d="M10 2C10 2 2 10 2 15a8 8 0 0016 0C18 10 10 2 10 2z"
+                  stroke="#888" stroke-width="1.4" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <p class="step-label">Prep</p>
+        <p class="step-body">Apply a hydrating conductive gel or premium facial oil to freshly cleansed skin. The rollers glide best on a nourished, slightly damp surface for optimal conductivity.</p>
+      </div>
+
+      <!-- Step 02: Sculpt -->
+      <div class="ritual-step" role="listitem">
+        <p class="step-num">Step 02</p>
+        <div class="step-icon" aria-hidden="true">
+          <svg width="22" height="18" viewBox="0 0 24 18" fill="none">
+            <path d="M2 9c2-5 4-7 6-7s3 5 5 5 3-7 6-7" stroke="#888" stroke-width="1.4"
+                  stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M2 16c2-3 3-4 5-4s3 3 5 3 3-4 5-4" stroke="#888" stroke-width="1.4"
+                  stroke-linecap="round" stroke-linejoin="round" opacity="0.38"/>
+          </svg>
+        </div>
+        <p class="step-label">Sculpt</p>
+        <p class="step-body">Glide the microcurrent rollers gently upward along the jawline and cheekbones, following the natural contours of the face with light, confident strokes for 3–5 minutes.</p>
+      </div>
+
+      <!-- Step 03: Glow -->
+      <div class="ritual-step" role="listitem">
+        <p class="step-num">Step 03</p>
+        <div class="step-icon" aria-hidden="true">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+            <path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.93 4.93l2.12 2.12M16.95 16.95l2.12 2.12M4.93 19.07l2.12-2.12M16.95 7.05l2.12-2.12"
+                  stroke="#888" stroke-width="1.4" stroke-linecap="round"/>
+            <circle cx="12" cy="12" r="3.5" stroke="#888" stroke-width="1.4"/>
+          </svg>
+        </div>
+        <p class="step-label">Glow</p>
+        <p class="step-body">Pat the remaining serum into the skin with fingertips to lock in hydration and reveal an instant, visibly lifted radiance. Use morning or evening — results compound over time.</p>
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- ═══════════════════════════════════════════════════════════
+       ❹ DEEP-DIVE TECHNOLOGY
+  ═══════════════════════════════════════════════════════════ -->
+  <section class="tech" id="technology" aria-label="Product technology deep dive">
+    <div class="tech-inner">
+
+      <!-- Left: close-up product visual -->
+      <div class="tech-frame" role="img" aria-label="Close-up of Lumière diamond-cut roller spheres">
+        <!--
+          DROP IN REAL CLOSE-UP IMAGE HERE:
+          <img src="roller-closeup.png" alt="Diamond-cut roller spheres" />
+        -->
+        <div class="tech-frame-ph" aria-hidden="true">
+          <div class="spheres-row">
+            <div class="sphere sphere-lg"></div>
+            <div class="sphere sphere-sm"></div>
+          </div>
+          <span class="tech-frame-caption">Diamond-Cut Contouring Spheres</span>
+        </div>
+      </div>
+
+      <!-- Right: spec copy -->
+      <div class="tech-copy">
+        <p class="section-eyebrow">Advanced Engineering</p>
+        <h2 class="section-title">
+          Engineered for<br>
+          <em style="font-style:italic">Visible Results.</em>
+        </h2>
+
+        <div class="tech-spec">
+          <h3 class="tech-spec-title">Dual-Sphere Contouring</h3>
+          <p class="tech-spec-body">Ergonomically engineered to perfectly mimic an aesthetician's deep kneading facial massage — targeting lymphatic drainage and muscle activation simultaneously through precision contact pressure.</p>
+        </div>
+
+        <div class="tech-spec">
+          <h3 class="tech-spec-title">Microcurrent Core</h3>
+          <p class="tech-spec-body">Delivers low-voltage electrical currents at 350 μA · 200 Hz that mirror your body's natural bioelectrical impulses — visibly toning and re-educating facial muscles over a consistent use cycle.</p>
+        </div>
+
+        <div class="tech-spec">
+          <h3 class="tech-spec-title">Light-Activated Generation</h3>
+          <p class="tech-spec-body">Harnesses ambient light through the central solar panel indicator strip to power microcurrents seamlessly. No charging required — beautifully sustainable by design.</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════════════════════════
+       ❺ SOCIAL PROOF & RESULTS
+  ═══════════════════════════════════════════════════════════ -->
+  <section class="proof" id="results" aria-label="Real results and customer reviews">
+
+    <div class="proof-header">
+      <p class="section-eyebrow">Verified Results</p>
+      <h2 class="section-title">Real Results from<br>Real Routines.</h2>
+    </div>
+
+    <!-- Before / After comparison -->
+    <div class="ba-grid" role="region" aria-label="Before and after skin comparison">
+
+      <div class="ba-panel ba-before">
+        <!--
+          DROP IN BEFORE IMAGE:
+          <img src="before-skin.jpg" alt="Skin texture before Lumière, Day 0" />
+        -->
+        <div class="ba-ph" aria-hidden="true">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#999"
+               stroke-width="1.5" stroke-linecap="round">
+            <rect x="3" y="3" width="18" height="18" rx="2"/>
+            <circle cx="8.5" cy="8.5" r="1.5"/>
+            <polyline points="21,15 16,10 5,21"/>
+          </svg>
+        </div>
+        <span class="ba-tag">Before</span>
+        <span class="ba-week">Day 0</span>
+      </div>
+
+      <div class="ba-panel ba-after">
+        <!--
+          DROP IN AFTER IMAGE:
+          <img src="after-skin.jpg" alt="Skin texture after 8 weeks of Lumière" />
+        -->
+        <div class="ba-ph" style="background:#ddd" aria-hidden="true">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#666"
+               stroke-width="1.5" stroke-linecap="round">
+            <rect x="3" y="3" width="18" height="18" rx="2"/>
+            <circle cx="8.5" cy="8.5" r="1.5"/>
+            <polyline points="21,15 16,10 5,21"/>
+          </svg>
+        </div>
+        <span class="ba-tag">After</span>
+        <span class="ba-week">Week 8</span>
+      </div>
+
+    </div>
+
+    <!-- Verified buyer reviews carousel -->
+    <p class="reviews-subhead">What Our Customers Are Saying</p>
+
+    <div class="reviews-track" role="list" aria-label="Customer reviews">
+
+      <!-- Review — 2 weeks -->
+      <article class="review-card" role="listitem">
+        <div class="review-stars" aria-label="5 out of 5 stars">
+          <span class="review-star" aria-hidden="true">★</span>
+          <span class="review-star" aria-hidden="true">★</span>
+          <span class="review-star" aria-hidden="true">★</span>
+          <span class="review-star" aria-hidden="true">★</span>
+          <span class="review-star" aria-hidden="true">★</span>
+        </div>
+        <p class="review-quote">"Within two weeks I noticed significantly less puffiness around my eyes and a subtle but real lift along my jawline. My skin already feels firmer and looks more awake."</p>
+        <div class="review-author">
+          <div class="review-avatar" aria-hidden="true">S</div>
+          <div>
+            <p class="review-name">Sofia M.</p>
+            <p class="review-location">New York, NY</p>
+            <p class="review-badge">✓ Verified Buyer · 2-Week Milestone</p>
+          </div>
+        </div>
+      </article>
+
+      <!-- Review — 4 weeks -->
+      <article class="review-card" role="listitem">
+        <div class="review-stars" aria-label="5 out of 5 stars">
+          <span class="review-star" aria-hidden="true">★</span>
+          <span class="review-star" aria-hidden="true">★</span>
+          <span class="review-star" aria-hidden="true">★</span>
+          <span class="review-star" aria-hidden="true">★</span>
+          <span class="review-star" aria-hidden="true">★</span>
+        </div>
+        <p class="review-quote">"Month one check-in: my cheekbones look more defined and my skin has this incredible healthy glow. Three people have asked if I've 'done something different.' Worth every penny."</p>
+        <div class="review-author">
+          <div class="review-avatar" aria-hidden="true">A</div>
+          <div>
+            <p class="review-name">Ava L.</p>
+            <p class="review-location">Los Angeles, CA</p>
+            <p class="review-badge">✓ Verified Buyer · 4-Week Milestone</p>
+          </div>
+        </div>
+      </article>
+
+      <!-- Review — 8 weeks -->
+      <article class="review-card" role="listitem">
+        <div class="review-stars" aria-label="5 out of 5 stars">
+          <span class="review-star" aria-hidden="true">★</span>
+          <span class="review-star" aria-hidden="true">★</span>
+          <span class="review-star" aria-hidden="true">★</span>
+          <span class="review-star" aria-hidden="true">★</span>
+          <span class="review-star" aria-hidden="true">★</span>
+        </div>
+        <p class="review-quote">"Two months in and the difference is unmistakable — sharper contours, softened fine lines, and a morning ritual I genuinely look forward to. This device has replaced three other tools."</p>
+        <div class="review-author">
+          <div class="review-avatar" aria-hidden="true">R</div>
+          <div>
+            <p class="review-name">Rachel K.</p>
+            <p class="review-location">Miami, FL</p>
+            <p class="review-badge">✓ Verified Buyer · 8-Week Milestone</p>
+          </div>
+        </div>
+      </article>
+
+      <!-- Review — 8 weeks -->
+      <article class="review-card" role="listitem">
+        <div class="review-stars" aria-label="5 out of 5 stars">
+          <span class="review-star" aria-hidden="true">★</span>
+          <span class="review-star" aria-hidden="true">★</span>
+          <span class="review-star" aria-hidden="true">★</span>
+          <span class="review-star" aria-hidden="true">★</span>
+          <span class="review-star" aria-hidden="true">★</span>
+        </div>
+        <p class="review-quote">"I've tried every gua sha and roller on the market. This is on a completely different level — the microcurrent is real and the premium finish makes me want to display it on my vanity."</p>
+        <div class="review-author">
+          <div class="review-avatar" aria-hidden="true">J</div>
+          <div>
+            <p class="review-name">Jade T.</p>
+            <p class="review-location">Chicago, IL</p>
+            <p class="review-badge">✓ Verified Buyer · 8-Week Milestone</p>
+          </div>
+        </div>
+      </article>
+
+    </div>
+
+  </section>
+
+
+  <!-- ═══════════════════════════════════════════════════════════
+       ❻ CONVERSION FOOTER
+  ═══════════════════════════════════════════════════════════ -->
+
+  <!-- Final pitch block -->
+  <section class="conversion" id="story" aria-label="Elevate your daily ritual — final CTA">
+
+    <!-- Duo device display -->
+    <div class="conv-devices" aria-hidden="true">
+      <!-- Black device -->
+      <div class="conv-dev conv-dev-b">
+        <svg viewBox="0 0 110 370" fill="none" width="64" height="214" aria-hidden="true">
+          <defs>
+            <linearGradient id="cBH" x1="0" y1="0" x2="1" y2="0">
+              <stop offset="0%"   stop-color="#2A2A2A"/>
+              <stop offset="100%" stop-color="#0A0A0A"/>
+            </linearGradient>
+            <linearGradient id="cBHd" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0%"   stop-color="#333"/>
+              <stop offset="100%" stop-color="#0D0D0D"/>
+            </linearGradient>
+          </defs>
+          <ellipse cx="55" cy="45" rx="47" ry="43" fill="url(#cBHd)"/>
+          <rect x="45" y="85"  width="20" height="28" rx="4"  fill="#161616"/>
+          <rect x="36" y="110" width="38" height="240" rx="19" fill="url(#cBH)"/>
+          <rect x="36" y="110" width="5"  height="240" rx="2.5" fill="rgba(255,255,255,0.05)"/>
+        </svg>
+      </div>
+      <!-- White device -->
+      <div class="conv-dev conv-dev-w">
+        <svg viewBox="0 0 90 300" fill="none" width="54" height="180" aria-hidden="true">
+          <defs>
+            <linearGradient id="cWH" x1="0" y1="0" x2="1" y2="0">
+              <stop offset="0%"   stop-color="#FAFAFA"/>
+              <stop offset="100%" stop-color="#D4D2D0"/>
+            </linearGradient>
+            <linearGradient id="cWHd" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0%"   stop-color="#FFFFFF"/>
+              <stop offset="100%" stop-color="#DEDCDA"/>
+            </linearGradient>
+          </defs>
+          <ellipse cx="45" cy="38" rx="38" ry="35" fill="url(#cWHd)"/>
+          <rect x="37" y="70" width="16" height="24" rx="3"  fill="#E2E0DE"/>
+          <rect x="30" y="91" width="30" height="192" rx="15" fill="url(#cWH)"/>
+        </svg>
+      </div>
+    </div>
+
+    <h2 class="conversion-headline">
+      Elevate Your<br>
+      <em>Daily Ritual.</em>
+    </h2>
+    <p class="conversion-sub">Both editions. One ritual. Infinite confidence.</p>
+
+    <a href="#duo" class="btn-conversion" aria-label="Shop the complete Lumière duo">
+      Shop The Duo
+      <svg width="15" height="9" viewBox="0 0 16 10" fill="none" aria-hidden="true">
+        <path d="M1 5h14M11 1l4 4-4 4" stroke="currentColor" stroke-width="1.3"
+              stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </a>
+
+  </section>
+
+  <!-- Footer columns -->
+  <footer class="footer-cols" role="contentinfo">
+    <div class="footer-cols-inner">
+
+      <!-- Col 1: Newsletter -->
+      <div>
+        <h3 class="footer-newsletter-title">
+          Join the inner circle.<br>Get 15% off your first order.
+        </h3>
+        <p class="footer-newsletter-body">
+          Exclusive access to new drops, limited-edition colorways, and evidence-based skincare
+          protocols — delivered directly to your inbox.
+        </p>
+        <form class="email-form" aria-label="Newsletter signup" onsubmit="return false;">
+          <input
+            type="email"
+            class="email-input"
+            placeholder="Your email address"
+            aria-label="Email address"
+            autocomplete="email"
+          />
+          <button type="submit" class="email-btn">Subscribe</button>
+        </form>
+      </div>
+
+      <!-- Col 2: Support -->
+      <div>
+        <h4 class="footer-col-head">Support</h4>
+        <ul class="footer-links" role="list">
+          <li><a href="#">Track Order</a></li>
+          <li><a href="#">Returns &amp; Exchanges</a></li>
+          <li><a href="#">Help Center</a></li>
+          <li><a href="#">Contact Us</a></li>
+          <li><a href="#">Shipping Policy</a></li>
+        </ul>
+      </div>
+
+      <!-- Col 3: Brand + social -->
+      <div>
+        <p class="footer-brand-mark">Lumière Innovations</p>
+        <p class="footer-brand-tagline">
+          Premium beauty technology engineered for the modern woman.
+          Precision-crafted devices for visible, lasting results.
+        </p>
+        <h4 class="footer-col-head">Follow Us</h4>
+        <div class="footer-socials" aria-label="Social media links">
+
+          <!-- TikTok -->
+          <a href="#" class="social-btn" aria-label="TikTok">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.37 6.37 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.84a8.16 8.16 0 004.77 1.53V6.92a4.85 4.85 0 01-1-.23z"/>
+            </svg>
+          </a>
+
+          <!-- Instagram -->
+          <a href="#" class="social-btn" aria-label="Instagram">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                 stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+              <path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/>
+              <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+            </svg>
+          </a>
+
+        </div>
+      </div>
+
+    </div>
+  </footer>
+
+  <!-- Footer legal strip -->
+  <div class="footer-strip">
+    <div class="footer-strip-inner">
+      <p class="footer-copy">© 2026 Lumière Innovations. All rights reserved.</p>
+      <div class="footer-legal">
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Service</a>
+        <a href="#">Accessibility</a>
+      </div>
+    </div>
+  </div>
+
+
+</body>
+</html>
