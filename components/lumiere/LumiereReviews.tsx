@@ -1,6 +1,7 @@
 'use client'
 
 import { useRef, useState, useCallback } from 'react'
+import Image from 'next/image'
 
 const REVIEWS = [
   {
@@ -84,47 +85,33 @@ export function LumiereReviews() {
         aria-label="Before and after skin comparison"
       >
         {/* Before */}
-        <div className="aspect-[3/4] bg-[#EEECEB] relative overflow-hidden flex items-center justify-center">
-          {/*
-            Drop in before image:
-            import Image from 'next/image'
-            <Image src="/before-skin.jpg" alt="Skin texture before Lumière, Day 0"
-                   fill style={{ objectFit: 'cover' }} />
-          */}
-          <div className="w-16 h-16 rounded-full bg-[#D0CCCB] flex items-center justify-center" aria-hidden="true">
-            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#999999" strokeWidth="1.5" strokeLinecap="round">
-              <rect x="3" y="3" width="18" height="18" rx="2" />
-              <circle cx="8.5" cy="8.5" r="1.5" />
-              <polyline points="21,15 16,10 5,21" />
-            </svg>
-          </div>
-          <span className="absolute top-[18px] left-[18px] text-[8.5px] font-bold tracking-[0.2em] uppercase bg-black text-white px-3.5 py-1.5">
+        <div className="aspect-[3/4] bg-[#EEECEB] relative overflow-hidden">
+          <Image
+            src="/before-skin.jpg"
+            alt="Skin texture before Lumière, Day 0"
+            fill
+            className="object-cover w-full h-full"
+          />
+          <span className="absolute top-[18px] left-[18px] text-[8.5px] font-bold tracking-[0.2em] uppercase bg-black text-white px-3.5 py-1.5 z-10">
             Before
           </span>
-          <span className="absolute bottom-[18px] right-[18px] text-[9px] font-semibold tracking-[0.14em] uppercase px-3 py-1.5 bg-white border border-[#D0CCCB] text-black">
+          <span className="absolute bottom-[18px] right-[18px] text-[9px] font-semibold tracking-[0.14em] uppercase px-3 py-1.5 bg-white border border-[#D0CCCB] text-black z-10">
             Day 0
           </span>
         </div>
 
         {/* After */}
-        <div className="aspect-[3/4] bg-[#EEECEB] relative overflow-hidden flex items-center justify-center">
-          {/*
-            Drop in after image:
-            import Image from 'next/image'
-            <Image src="/after-skin.jpg" alt="Skin texture after 8 weeks of Lumière"
-                   fill style={{ objectFit: 'cover' }} />
-          */}
-          <div className="w-16 h-16 rounded-full bg-[#DDDCDB] flex items-center justify-center" aria-hidden="true">
-            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#666666" strokeWidth="1.5" strokeLinecap="round">
-              <rect x="3" y="3" width="18" height="18" rx="2" />
-              <circle cx="8.5" cy="8.5" r="1.5" />
-              <polyline points="21,15 16,10 5,21" />
-            </svg>
-          </div>
-          <span className="absolute top-[18px] left-[18px] text-[8.5px] font-bold tracking-[0.2em] uppercase bg-white border border-[#D0CCCB] text-black px-3.5 py-1.5">
+        <div className="aspect-[3/4] bg-[#EEECEB] relative overflow-hidden">
+          <Image
+            src="/after-skin.jpg"
+            alt="Skin texture after 8 weeks of Lumière"
+            fill
+            className="object-cover w-full h-full"
+          />
+          <span className="absolute top-[18px] left-[18px] text-[8.5px] font-bold tracking-[0.2em] uppercase bg-white border border-[#D0CCCB] text-black px-3.5 py-1.5 z-10">
             After
           </span>
-          <span className="absolute bottom-[18px] right-[18px] text-[9px] font-semibold tracking-[0.14em] uppercase px-3 py-1.5 bg-white border border-[#D0CCCB] text-black">
+          <span className="absolute bottom-[18px] right-[18px] text-[9px] font-semibold tracking-[0.14em] uppercase px-3 py-1.5 bg-white border border-[#D0CCCB] text-black z-10">
             Week 8
           </span>
         </div>

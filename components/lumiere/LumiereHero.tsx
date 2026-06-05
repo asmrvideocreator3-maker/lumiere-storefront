@@ -114,7 +114,7 @@ export function LumiereHero() {
         className="bg-black relative order-1 md:order-none md:h-auto md:min-h-0 md:max-h-none"
         style={{ height: '58vmax', minHeight: 320, maxHeight: 460 }}
       >
-        {/* Radial bloom */}
+        {/* Radial ambient glow */}
         <div
           className="absolute right-[15%] top-[20%] w-[380px] h-[380px] pointer-events-none"
           style={{ background: 'radial-gradient(ellipse, rgba(255,255,255,0.045) 0%, transparent 68%)' }}
@@ -122,8 +122,8 @@ export function LumiereHero() {
         />
       </div>
 
-      {/* ── Device stage: spans full hero width via position:absolute ──
-          z-index 10 = above both background panels, below left copy (z-20) */}
+      {/* ── Device stage: absolute, spans full hero width ──
+          z-10 = above panels, below left copy (z-20) */}
       <div
         className="absolute inset-0 z-10 pointer-events-none"
         aria-label="Product showcase — Black and White editions"
@@ -134,14 +134,12 @@ export function LumiereHero() {
           role="img"
           aria-label="Lumière Black Edition microcurrent roller"
         >
-          {/* position:relative wrapper required by next/image fill */}
           <div className="relative w-full h-full">
             <Image
-              src="/image_3dfdad.png"
+              src="/image_3dfdad.jpg"
               alt="Lumière Black Edition microcurrent roller"
               fill
-              sizes="(max-width: 768px) 155px, (max-width: 1100px) 210px, 250px"
-              style={{ objectFit: 'contain' }}
+              className="object-contain"
               priority
             />
           </div>
@@ -156,11 +154,10 @@ export function LumiereHero() {
         >
           <div className="relative w-full h-full">
             <Image
-              src="/image_3dfda7.png"
+              src="/image_3dfda7.jpg"
               alt="Lumière White Edition microcurrent roller"
               fill
-              sizes="(max-width: 768px) 125px, (max-width: 1100px) 168px, 200px"
-              style={{ objectFit: 'contain' }}
+              className="object-contain"
             />
           </div>
           <span className={styles.editionLabel}>White Edition</span>
