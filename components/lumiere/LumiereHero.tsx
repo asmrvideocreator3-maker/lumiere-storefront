@@ -134,7 +134,7 @@ export function LumiereHero() {
           role="img"
           aria-label="Lumière Black Edition microcurrent roller"
         >
-          <div className="relative w-full h-full">
+          <div className={`relative w-full h-full ${styles.imgMask}`}>
             <Image
               src="/image_3dfdad.jpg"
               alt="Lumière Black Edition microcurrent roller"
@@ -152,7 +152,7 @@ export function LumiereHero() {
           role="img"
           aria-label="Lumière White Edition microcurrent roller"
         >
-          <div className="relative w-full h-full">
+          <div className={`relative w-full h-full ${styles.imgMask}`}>
             <Image
               src="/image_3dfda7.jpg"
               alt="Lumière White Edition microcurrent roller"

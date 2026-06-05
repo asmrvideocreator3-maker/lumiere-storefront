@@ -8,8 +8,8 @@
 }
 
 @keyframes lumiereFloatWhite {
-  0%, 100% { transform: translate(22%, -45%) rotate(7deg); }
-  50%       { transform: translate(22%, -49%) rotate(7deg) translateX(4px); }
+  0%, 100% { transform: translate(17%, -45%) rotate(7deg); }
+  50%       { transform: translate(17%, -49%) rotate(7deg) translateX(4px); }
 }
 
 /* ══════════════════════════════════════════════════════════
@@ -25,7 +25,6 @@
   transform: translate(-38%, -53%) rotate(-5.5deg);
   transform-origin: center bottom;
   z-index: 4;
-  /* No card background — product photo renders naturally */
   filter:
     drop-shadow(0 32px 64px rgba(0, 0, 0, 0.90))
     drop-shadow(0 12px 28px rgba(0, 0, 0, 0.70));
@@ -38,16 +37,23 @@
   height: 330px;
   left: 50%;
   top: 50%;
-  /* Pulled left (-5% → 17%) so the white device stays fully in frame */
   transform: translate(17%, -45%) rotate(7deg);
   transform-origin: center bottom;
   z-index: 3;
-  /* No card background — product photo renders naturally */
   filter:
     drop-shadow(0 24px 52px rgba(0, 0, 0, 0.80))
     drop-shadow(0 8px 20px rgba(0, 0, 0, 0.55));
   animation: lumiereFloatWhite 7s ease-in-out infinite;
   animation-delay: -3.5s;
+}
+
+/* ══════════════════════════════════════════════════════════
+   Image mask — dissolves the rectangular white JPG border
+   so the device appears to float without a card background
+══════════════════════════════════════════════════════════ */
+.imgMask {
+  -webkit-mask-image: radial-gradient(ellipse 70% 78% at 50% 42%, black 46%, transparent 82%);
+  mask-image: radial-gradient(ellipse 70% 78% at 50% 42%, black 46%, transparent 82%);
 }
 
 /* Edition label — sits above the device image */
@@ -100,36 +106,6 @@
 }
 
 @keyframes lumiereFloatWhiteMobile {
-  0%, 100% { transform: translate(5%, -45%) rotate(7deg); }
-  50%       { transform: translate(5%, -49%) rotate(7deg); }
-}
-
-/* ══════════════════════════════════════════════════════════
-   Split-frame panel float — right hero panel
-══════════════════════════════════════════════════════════ */
-
-@keyframes lumierePanelFloat {
-  0%, 100% { transform: translateY(0px);    }
-  50%       { transform: translateY(-12px); }
-}
-
-/* Fills its parent panel, centres the image, animates upward */
-.panelFloat {
-  position: absolute;
-  inset: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  animation: lumierePanelFloat 6s ease-in-out infinite;
-}
-
-/* Same as panelFloat but offset so the two devices breathe independently */
-.panelFloatAlt {
-  position: absolute;
-  inset: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  animation: lumierePanelFloat 6s ease-in-out infinite;
-  animation-delay: -3s;
+  0%, 100% { transform: translate(10%, -45%) rotate(7deg); }
+  50%       { transform: translate(10%, -49%) rotate(7deg); }
 }
