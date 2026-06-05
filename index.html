@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lunara • Facial Sculptor</title>
+    <style>
+        :root {
+            --bg: #ffffff;
+            --text: #111111;
+            --accent: #555555;
+        }
+        
+        [data-theme="dark"] {
+            --bg: #0f0f0f;
+            --text: #f5f5f5;
+            --accent: #aaaaaa;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            transition: background 0.4s ease;
+        }
+
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 60px;
+            display: flex;
+            align-items: center;
+            gap: 80px;
+            width: 100%;
+        }
+
+        .content { flex: 1; }
+        
+        .badge { 
+            font-size: 13px; 
+            letter-spacing: 3px; 
+            color: var(--accent); 
+            margin-bottom: 16px; 
+        }
+
+        .radiate { 
+            font-size: 2.1rem; 
+            font-weight: 400; 
+            color: var(--accent); 
+            margin-bottom: 8px; 
+        }
+
+        .define { 
+            font-size: 4.8rem; 
+            line-height: 1.05; 
+            font-weight: 700; 
+        }
+
+        .reviews { 
+            margin: 32px 0; 
+            color: var(--accent); 
+            font-size: 1.05rem; 
+        }
+
+        .buttons { display: flex; gap: 16px; }
+
+        .btn-black {
+            background: #000;
+            color: white;
+            padding: 16px 40px;
+            border-radius: 50px;
+            font-weight: 600;
+            text-decoration: none;
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--text);
+            padding: 16px 40px;
+            border: 2px solid var(--text);
+            border-radius: 50px;
+            font-weight: 600;
+            text-decoration: none;
+        }
+
+        .product-area {
+            flex: 1;
+            position: relative;
+            display: flex;
+            justify-content: center;
+        }
+
+        .product {
+            max-width: 520px;
+            filter: drop-shadow(0 40px 60px rgba(0,0,0,0.3));
+        }
+
+        .edition {
+            position: absolute;
+            bottom: 60px;
+            right: 40px;
+            font-size: 1.1rem;
+            letter-spacing: 4px;
+            font-weight: 500;
+            color: var(--text);
+            font-family: 'Playfair Display', serif;
+        }
+
+        .toggle {
+            position: fixed;
+            top: 30px;
+            right: 30px;
+            z-index: 100;
+            padding: 10px 18px;
+            background: var(--text);
+            color: var(--bg);
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: 600;
+        }
+
+        @media (max-width: 1024px) {
+            .container { flex-direction: column; text-align: center; gap: 60px; }
+            .define { font-size: 3.6rem; }
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body data-theme="light">
+
+    <button class="toggle" onclick="toggleTheme()">🌙 Dark Mode</button>
+
+    <section class="hero">
+        <div class="container">
+            <div class="content">
+                <p class="badge">LUXURY FACIAL TECHNOLOGY</p>
+                <p class="radiate">Radiate Confidence.</p>
+                <h1 class="define">Define Beauty.</h1>
+                
+                <div class="reviews">
+                    ★★★★★ 4.9/5.0 • 2,140+ verified reviews on Google
+                </div>
+
+                <div class="buttons">
+                    <a href="#" class="btn-black">SHOP NOW</a>
+                    <a href="#" class="btn-outline">LEARN MORE →</a>
+                </div>
+            </div>
+
+            <div class="product-area">
+                <img id="product-img" src="/home/workdir/attachments/CEqDS.jpg" alt="Lunara Edition" class="product">
+                <div id="edition-label" class="edition">BLACK EDITION</div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        function toggleTheme() {
+            const body = document.body;
+            const isDark = body.getAttribute('data-theme') === 'dark';
+            
+            if (isDark) {
+                body.setAttribute('data-theme', 'light');
+                document.querySelector('.toggle').textContent = '🌙 Dark Mode';
+                document.getElementById('edition-label').textContent = 'BLACK EDITION';
+                document.getElementById('product-img').src = '/home/workdir/attachments/CEqDS.jpg';
+            } else {
+                body.setAttribute('data-theme', 'dark');
+                document.querySelector('.toggle').textContent = '☀️ Light Mode';
+                document.getElementById('edition-label').textContent = 'WHITE EDITION';
+                // Replace with your White Edition image path when ready
+                document.getElementById('product-img').src = '/home/workdir/attachments/CEqDS.jpg'; // ← Change this later to white version
+            }
+        }
+    </script>
+</body>
+</html>
